@@ -1,7 +1,7 @@
 #ifndef __CONTROLLER_HPP
 #define __CONTROLLER_HPP
 
-#include "component.hpp"
+
 class Controller : public ODriveIntf::ControllerIntf {
 public:
     struct Anticogging_t {
