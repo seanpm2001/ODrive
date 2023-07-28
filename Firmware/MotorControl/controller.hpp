@@ -97,13 +97,6 @@ public:
     InputPort<float> vel_estimate_src_;
     InputPort<float> pos_wrap_src_; 
 
-    // Outputs
-    float debug1_ = 0.0f;    // [None]
-    float debug2_ = 0.0f;    // [None]
-    float debug3_ = 0.0f;    // [None]
-    float debug4_ = 0.0f;    // [None]
-    float debug5_ = 0.0f;    // [None]
-
     float pos_setpoint_ = 0.0f; // [turns]
     float vel_setpoint_ = 0.0f; // [turn/s]
     // float vel_setpoint = 800.0f; <sensorless example>

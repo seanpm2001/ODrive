@@ -1003,21 +1003,6 @@ interfaces:
             type: float32
             doc: "Electrical power threshold for spinout detection. This should be a positive value"
             unit: Watt
-      debug1:
-        type: readonly float32
-        unit: rad/s
-      debug2:
-        type: readonly float32
-        unit: rad/s
-      debug3:
-        type: readonly float32
-        unit: rad/s
-      debug4:
-        type: readonly float32
-        unit: rad/s
-      debug5:
-        type: readonly float32
-        unit: rad/s
       autotuning:
         c_is_class: False
         doc: Automatically generate sine waves for frequency-domain response tuning
