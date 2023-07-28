@@ -937,7 +937,7 @@ interfaces:
             doc: Limit the integrator output (independent of proportional gain output). Set to infinity to disable. Units = Nm
           vel_differentiator_gain:
             type: float32
-            unit: Nm/turn            
+            unit: Nm/turn
           vel_limit:
             type: float32
             unit: turn/s
@@ -1003,6 +1003,21 @@ interfaces:
             type: float32
             doc: "Electrical power threshold for spinout detection. This should be a positive value"
             unit: Watt
+      debug1:
+        type: readonly float32
+        unit: rad/s
+      debug2:
+        type: readonly float32
+        unit: rad/s
+      debug3:
+        type: readonly float32
+        unit: rad/s
+      debug4:
+        type: readonly float32
+        unit: rad/s
+      debug5:
+        type: readonly float32
+        unit: rad/s
       autotuning:
         c_is_class: False
         doc: Automatically generate sine waves for frequency-domain response tuning

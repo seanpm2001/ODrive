@@ -1,6 +1,7 @@
 #ifndef __CONTROLLER_HPP
 #define __CONTROLLER_HPP
 
+#include "component.hpp"
 class Controller : public ODriveIntf::ControllerIntf {
 public:
     struct Anticogging_t {
@@ -95,6 +96,13 @@ public:
     InputPort<float> pos_estimate_circular_src_;
     InputPort<float> vel_estimate_src_;
     InputPort<float> pos_wrap_src_; 
+
+    // Outputs
+    float debug1_ = 0.0f;    // [None]
+    float debug2_ = 0.0f;    // [None]
+    float debug3_ = 0.0f;    // [None]
+    float debug4_ = 0.0f;    // [None]
+    float debug5_ = 0.0f;    // [None]
 
     float pos_setpoint_ = 0.0f; // [turns]
     float vel_setpoint_ = 0.0f; // [turn/s]
