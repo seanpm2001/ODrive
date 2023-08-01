@@ -318,6 +318,8 @@ bool Controller::update() {
         torque += config_.anticogging.cogging_map[std::clamp(mod((int)anticogging_pos, 3600), 0, 3600)];
     }
 
+    //PID control!
+
     float v_err = 0.0f;
     if (config_.control_mode >= CONTROL_MODE_VELOCITY_CONTROL) {
         if (!vel_estimate.has_value()) {
@@ -325,16 +327,24 @@ bool Controller::update() {
             return false;
         }
 
+        //P-Term
         v_err = vel_des - *vel_estimate;
         torque += (vel_gain * gain_scheduling_multiplier) * v_err;
 
-        float vel_error_diff = v_err - vel_err_previous_;
-        vel_error_diff /= current_meas_period;
-        vel_err_previous_ = v_err;
-        torque += vel_error_diff * config_.vel_differentiator_gain;
-
-        // Velocity integral action before limiting
+        // I-Term
         torque += vel_integrator_torque_;
+
+        // D-Term
+        float vel_error_diff = v_err - vel_err_previous_;
+        vel_err_previous_ = v_err;
+        vel_error_diff /= current_meas_period;
+
+        float torque_limit = axis_->motor_.config_.current_lim * axis_->motor_.config_.torque_constant;
+        float torque_buffer = std::max(torque_limit - std::abs(torque), 0.0f);
+
+        float d_term = vel_error_diff * config_.vel_differentiator_gain;
+        d_term = std::clamp(d_term, -torque_buffer, torque_buffer);
+        torque += d_term;
     }
 
     // Velocity limiting in current mode
